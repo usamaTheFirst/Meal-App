@@ -19,6 +19,7 @@ class MealItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      splashColor: Colors.red,
       onTap: selectMeal,
       child: Card(
         elevation: 5,
@@ -42,18 +43,61 @@ class MealItem extends StatelessWidget {
                 ),
                 Positioned(
                   bottom: 20,
-                  right: 0,
-                  child: Text(
-                    title,
-                    softWrap: true,
-                    overflow: TextOverflow.fade,
-                    style: TextStyle(
-                        fontSize: 26,
+                  right: 10,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+                    color: Colors.black54,
+                    width: MediaQuery.of(context).size.width - 50,
+                    child: Text(
+                      title,
+                      textAlign: TextAlign.right,
+                      softWrap: true,
+                      overflow: TextOverflow.fade,
+                      style: TextStyle(
+                        fontSize: 25,
                         color: Colors.white,
-                        backgroundColor: Colors.black54),
+                      ),
+                    ),
                   ),
                 ),
               ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                // mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Row(
+                    // mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.schedule),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text('$duration min')
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Icon(Icons.work),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text('${complexity.value} ')
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Icon(Icons.attach_money_sharp),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text('${affordability.value} ')
+                    ],
+                  ),
+                ],
+              ),
             ),
           ],
         ),

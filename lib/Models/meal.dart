@@ -1,7 +1,38 @@
 import 'package:flutter/material.dart';
 
-enum Complexity { Simple, Challenging, Hard }
+enum Complexity {
+  Simple,
+  Challenging,
+  Hard,
+}
+
+extension CompExtension on Complexity {
+  get value {
+    switch (this) {
+      case Complexity.Hard:
+        return 'Hard';
+      case Complexity.Simple:
+        return 'Simple';
+      case Complexity.Challenging:
+        return 'Challenging';
+    }
+  }
+}
+
 enum Affordability { Affordable, Pricey, Luxurious }
+
+extension AffordExtension on Affordability {
+  String get value {
+    switch (this) {
+      case Affordability.Affordable:
+        return "Affordable";
+      case Affordability.Luxurious:
+        return "Luxurious";
+      case Affordability.Pricey:
+        return "Pricey";
+    }
+  }
+}
 
 class Meal {
   final String id, title, imageUrl;
