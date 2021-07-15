@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/Screens/category_meal_screen.dart';
 
-import 'categories_screen.dart';
+import 'Screens/categories_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -33,7 +34,12 @@ class MyApp extends StatelessWidget {
 
         // scaffoldBackgroundColor: const Color(0xFFEFEFEF),
       ),
-      home: CategoriesScreen(),
+      routes: {
+        '/': (_) => CategoriesScreen(),
+        CategoryMealScreen.routeName: (_) => CategoryMealScreen(),
+      },
+      // home: CategoriesScreen(),
+      initialRoute: '/',
     );
   }
 }
