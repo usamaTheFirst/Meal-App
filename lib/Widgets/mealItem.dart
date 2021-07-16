@@ -9,17 +9,21 @@ class MealItem extends StatelessWidget {
   final Complexity complexity;
   final Affordability affordability;
 
-  const MealItem(
-      {@required this.title,
-      @required this.imageUrl,
-      @required this.duration,
-      @required this.complexity,
-      @required this.affordability,
-      this.id});
+  const MealItem({
+    @required this.title,
+    @required this.imageUrl,
+    @required this.duration,
+    @required this.complexity,
+    @required this.affordability,
+    @required this.id,
+  });
 
   void selectMeal(context) {
     Navigator.pushNamed(context, MealDetailScreen.routeName,
-        arguments: {'id': id});
+        arguments: {'id': id}).then((value) {
+      print(value);
+      // if (value != null) remove(value);
+    });
   }
 
   @override

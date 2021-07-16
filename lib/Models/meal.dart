@@ -30,6 +30,8 @@ extension AffordExtension on Affordability {
         return "Luxurious";
       case Affordability.Pricey:
         return "Pricey";
+      default:
+        return 'Unknown';
     }
   }
 }

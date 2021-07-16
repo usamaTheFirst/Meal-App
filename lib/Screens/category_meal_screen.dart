@@ -1,23 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/Models/meal.dart';
 import 'package:flutter_complete_guide/Widgets/mealItem.dart';
-import '../dummy_data.dart';
 
-class CategoryMealScreen extends StatelessWidget {
+class CategoryMealScreen extends StatefulWidget {
   static const String routeName = "/meal-screen";
-  // final String categoryID, categoryTitle;
-  //
-  // const CategoryMealScreen(
-  //     {Key key, @required this.categoryID, @required this.categoryTitle})
-  //     : super(key: key);
+  final List<Meal> availableMeals;
+
+  const CategoryMealScreen({Key key, this.availableMeals}) : super(key: key);
+
+  @override
+  _CategoryMealScreenState createState() => _CategoryMealScreenState();
+}
+
+class _CategoryMealScreenState extends State<CategoryMealScreen> {
+  String categoryTitle;
+  List<Meal> filteredMeal;
+
+  @override
+  void initState() {
+    //Things related to of(context) dont work in here.
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    final routeArgs = ModalRoute.of(context).settings.arguments as Map;
+    categoryTitle = routeArgs['title'];
+    final categoryId = routeArgs['id'];
+    filteredMeal = widget.availableMeals.where((meal) {
+      return meal.categories.contains(categoryId);
+    }).toList();
+    super.didChangeDependencies();
+  }
+
+  void _removeMeal(String mealID) {
+    setState(() {
+      filteredMeal.removeWhere((element) {
+        return mealID == element.id;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    final routeArgs = ModalRoute.of(context).settings.arguments as Map;
-    final categoryTitle = routeArgs['title'];
-    final categoryId = routeArgs['id'];
-    final filteredMeal = DUMMY_MEALS.where((meal) {
-      return meal.categories.contains(categoryId);
-    }).toList();
     return Scaffold(
       appBar: AppBar(
         title: Text(categoryTitle),
